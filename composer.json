@@ -1,0 +1,21 @@
+{
+    "name": "63930/soc-med",
+    "type": "project",
+    "require": {
+        "google/cloud-firestore": "^1.33",
+        "kreait/firebase-php": "^7.2"
+    },
+    "license": "GPL",
+    "autoload": {
+        "psr-4": {
+            "63930\\SocMed\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jazelll",
+            "email": "ritoaltheajazel@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
