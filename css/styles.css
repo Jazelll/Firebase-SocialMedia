@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Marcellus', serif;
+  }
+
+  body {
+    /* height: 100%;
+    background-image: linear-gradient(147deg, #FFE53B 0%, #fd3838 74%);
+    background-repeat: no-repeat; */
+    background: rgb(0,72,185);
+background: linear-gradient(90deg, rgba(0,72,185,1) 0%, rgba(125,125,246,1) 35%, rgba(160,98,211,1) 63%, rgba(71,63,164,1) 100%);
+  }
+  
+  a,
+  ul {
+    text-decoration: none;
+    list-style: none;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template:
+      'header header header header header header'
+      'main main main main main main'
+      'main main main main main main';
+  }
+  
+  .navbar {
+    grid-area: header;
+    position: sticky; 
+    top: 0; 
+    z-index: 999;
+    
+  }
+  
+  .sidebar {
+    grid-area: menu;
+    background: #f1f1f1;
+    font-size: 2rem;
+    position: sticky; 
+    top: 0;
+    overflow: hidden;
+    width: 20;
+    height: 100vh;
+    box-shadow: 1px 1px 8px rgb(150, 150, 150);
+  }
+  
+  .item3 {
+    grid-area: main;
+  }
+  
+  .posts-container {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .card-post {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 65%;
+    height: 55vh;
+    padding: 10px;
+  }
+
+  .card-left {
+    position: absolute;
+    left: -20px;
+    height: 85%;
+    width: 40%;
+    background-image: linear-gradient(147deg, rgb(250, 140, 60) 0%, rgba(250, 50, 50, 0.5) 74%);
+    box-shadow: 4px 13px 30px 1px rgba(252, 56, 56, 0.2);
+    border-radius: 1rem;
+  }
+
+  .card-left img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3/2;
+    border-radius: 1rem;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+  }
+
+  .card-left:hover img {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+  }
+
+  .card-right {
+    width: 95%;
+    height: 100%;
+    background-color: #f1f1f1;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: right;
+    align-items: start;
+  }
+
+  .card-right .content {
+    position: relative;
+    width: 60%;
+    float: left;
+    margin-top: 5%;
+  }
+  
+  .content h1 {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 1.75rem;
+  }
+
+  .content p {
+    font-size: .75rem;
+    width: 80%;
+  }
+
+  .content span, p.counts, p.comments {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .actions a {
+    font-size: 24px;
+    color: #8bc34a;
+    cursor: pointer;
+  }
+
+  .actions a:hover {
+    color: #4CAF50;
+  }
+
+  .new-comment {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 59%;
+  }
+  
+  
+/*   .nav {
+    position: relative;
+    margin: 0 15%;
+    text-align: right;
+    top: 25%;
+    transform: translateY(-50%);
+    font-weight: bold;
+  }
+
+  .nav ul {
+    list-style: none;
+  }
+  .nav ul li {
+    position: relative;
+    margin: 3.2em 0;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.852);
+  }
+
+  .card-body {
+    background: rgba(255, 255, 255, 0.727);
+  }
+
+  .nav ul li a {
+    line-height: 5em;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.4em;
+    color: rgba(255, 255, 255, 0.35);
+    display: block;
+    transition: all ease-out 300ms;
+  }
+
+  .nav ul li.active a {
+    color: white;
+  }
+
+  .nav ul li:not(.active)::after {
+    opacity: 0.2;
+  }
+
+  .nav ul li:not(.active):hover a {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+
+
+  .navbar-brand {
+    font-size: large;
+  }
+
+  .feed-container {
+    position: relative;
+    width: 80%;
+    float: right;
+  }
+
+  .feed-container .feed {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  } */

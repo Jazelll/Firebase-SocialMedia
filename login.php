@@ -1,32 +1,25 @@
-<?php 
-    require_once __DIR__ .'/db.php'; 
-    if(isset($_SESSION['userid'])) {
-        header('Location: index.php');
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
-
     <div class="container">
         <section id="formHolder">
             <div class="row">
-                <!-- Brand Box -->
                 <div class="col-sm-6 brand">
                     <a href="#" class="logo">Share your thoughts <span>.</span></a>
                     <div class="heading">
-                        <h2>Marina</h2>
-                        <p>Your Right Choice</p>
+                    <div class="image-container">
+                        <img src="/assets/images/ShareSpace.png" alt="My Image">
+                    </div>
+                        <p>We're Aliens.</p>
                     </div>
                 </div>
                 <!-- Form Box -->
@@ -58,13 +51,19 @@
                                 <span class="error"></span>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" name="email" id="email" class="email">
+                                <label for="firstname">First Name</label>
+                                <input type="text" name="firstname" id="firstname" class="firstname">
                                 <span class="error"></span>
                             </div>
                             <div class="form-group">
-                                <label for="phone">Phone Number - <small>Optional</small></label>
-                                <input type="text" name="phone" id="phone">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" name="lastname" id="lastname" class="lastname">
+                                <span class="error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" name="email" id="email" class="email">
+                                <span class="error"></span>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
@@ -88,6 +87,6 @@
         </section>
     </div>
 
-    <script src="ajax.js"></script>
+    <script src="../js/ajax.js"></script>
 </body>
 </html>

@@ -10,5 +10,6 @@
         'projectId' => 'fir-exam-b59e5'
     ]);
 
-    $blogsColRef = $database->collection('blogs');
+    $blogsColRef = $database->collection('blogs')->orderBy('date', 'desc');
     $blogs = $blogsColRef->documents();
+    $count = $blogs->size();

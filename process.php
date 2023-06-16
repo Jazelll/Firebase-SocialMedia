@@ -13,6 +13,8 @@
 
     if (isset($_POST['Register'])) {
         $username = $_POST['username'];
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
@@ -31,7 +33,11 @@
                 'email' => $email,
                 'password' => $password,
                 'username' => $username,
-                'avatar' => 'https://mdbootstrap.com/img/new/avatars/10.jpg',
+                'name' => [
+                    'first' => $firstname,
+                    'last' => $lastname
+                ],
+                'avatar' => 'https://www.pngitem.com/pimgs/m/649-6490124_katie-notopoulos-katienotopoulos-i-write-about-tech-round.png',
             ]);
 
             // Send success response
@@ -57,7 +63,7 @@
 
             echo json_encode(['success' => true]);
         } catch(\Exception $e) {
-            echo json_encode(['error' => 'Error: ' . $e->getMessage()]);
+            echo json_encode(['error' => $e->getMessage()]);
         }
     }
 
@@ -89,14 +95,14 @@
             ]);
     
             // Increment the 'reacts'
-            $blogsColRef->document($postId)->set([
+            $database->collection('blogs')->document($postId)->set([
                 'reacts' => FieldValue::increment(1)
             ], ['merge' => true]);
         } else {
             
             // Unlike the post
             // Decrement the 'reacts'
-            $blogsColRef->document($postId)->set([
+            $database->collection('blogs')->document($postId)->set([
                 'reacts' => FieldValue::increment(-1)
             ], ['merge' => true]);
         }
@@ -128,11 +134,67 @@
         header('Location: post.php?id=' . $postid);
     }
 
+    if(isset($_GET['delete-comment'])) {
+        $commentId = $_GET['delete-comment'];
+        $postid = $_GET['post'];
+    
+        $commentRef = $database->collection('postcomments')->document($commentId)->delete();
+        $getDoc = $database->collection('blogs')->document($postid)->snapshot();
+        $current = $getDoc['coms'];
+        $database->collection('blogs')->document($postid)->set([
+            'coms' => --$current
+        ], ['merge' => true]);
+    
+        header('Location: post.php?id=' . $postid);
+        exit();
+      }
+
     if(isset($_GET['logout'])) {
         session_start(); 
         $_SESSION = array();
         session_destroy();
         
+        header('Location: index.php');
+        exit();
+    }
+
+    if (isset($_POST['edit-profile'])) {
+        $newfirstname = $_POST['firstname'];
+        $newlastname = $_POST['lastname'];
+        $newUsername = $_POST['username'];
+        $newavatar = $_POST['avatar'];
+        $uid = $_SESSION['userid'];
+
+        $database->collection('users')->document($uid)->set([
+            'username' => $newUsername,
+            'name' => [
+                'first' => $newfirstname,
+                'last' => $newlastname
+            ],
+            'avatar' => $newavatar
+        ], ['merge' => true]);
+    
+        header('Location: profile.php');
+        exit();
+    }
+
+    if (isset($_POST['new-post'])) {
+        $title = $_POST['title'];
+        $body = $_POST['body'];
+        $photo = $_POST['photo'];
+        $currentDateTime = new DateTime();
+        $uid = $_SESSION['userid'];
+
+        $database->collection('blogs')->add([
+            'title' => $title,
+            'body' => $body,
+            'date' => $currentDateTime,
+            'photo' => $photo,
+            'reacts' => 0,
+            'coms' => 0,
+            'userid' => $uid
+        ]);
+    
         header('Location: index.php');
         exit();
     }

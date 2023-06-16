@@ -4,6 +4,8 @@ $(document).ready(function () {
     'use strict';
 
     var usernameError = true,
+        firstnameError= true,
+        lastnameError = true,
         emailError    = true,
         passwordError = true,
         passConfirm   = true;
@@ -23,7 +25,7 @@ $(document).ready(function () {
         // User Name
         if ($(this).hasClass('username')) {
             if ($(this).val().length === 0) {
-                $(this).siblings('span.error').text('Please type your full name').fadeIn().parent('.form-group').addClass('hasError');
+                $(this).siblings('span.error').text('Please type your user name').fadeIn().parent('.form-group').addClass('hasError');
                 usernameError = true;
             } else if ($(this).val().length > 1 && $(this).val().length <= 5) {
                 $(this).siblings('span.error').text('Please type at least 6 characters').fadeIn().parent('.form-group').addClass('hasError');
@@ -43,6 +45,26 @@ $(document).ready(function () {
                 emailError = false;
             }
         }
+
+        if ($(this).hasClass('firstname')) {
+            if ($(this).val().length == '') {
+                $(this).siblings('span.error').text('Please type your first name').fadeIn().parent('.form-group').addClass('hasError');
+                firstnameError = true;
+            } else {
+                $(this).siblings('.error').text('').fadeOut().parent('.form-group').removeClass('hasError');
+                firstnameError = false;
+            }
+        }
+
+        if ($(this).hasClass('lastname')) {
+            if ($(this).val().length == '') {
+                $(this).siblings('span.error').text('Please type your last name').fadeIn().parent('.form-group').addClass('hasError');
+                lastnameError = true;
+            } else {
+                $(this).siblings('.error').text('').fadeOut().parent('.form-group').removeClass('hasError');
+                lastnameError = false;
+            }
+        }        
 
         // PassWord
         if ($(this).hasClass('pass')) {
@@ -88,8 +110,8 @@ $(document).ready(function () {
     $('form.signup-form').submit(function (event) {
         event.preventDefault();
     
-        if (usernameError || emailError || passwordError || passConfirm) {
-            $('.username, .email, .pass, .passConfirm').blur();
+        if (usernameError || firstnameError || lastnameError || emailError || passwordError || passConfirm) {
+            $('.username, .firstname, .lastname, .email, .pass, .passConfirm').blur();
         } else {
     
             $.ajax({
@@ -99,6 +121,8 @@ $(document).ready(function () {
                     Register: true, // Identifier for the register method
                     // Include other form field values here
                     username: $('#username').val(),
+                    lastname: $('#lastname').val(),
+                    firstname: $('#firstname').val(),
                     email: $('#email').val(),
                     password: $('#password').val(),
                 },
